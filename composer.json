@@ -1,0 +1,24 @@
+{
+    "name": "nickescobedo/microbilt-php",
+    "description": "A PHP client for consuming the Microbilt web services API.",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5",
+        "mockery/mockery": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nickescobedo\\Microbilt\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nick Escobedo",
+            "email": "nick@nickescobedo.com"
+        }
+    ]
+}
