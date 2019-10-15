@@ -2,13 +2,11 @@
 
 namespace Nickescobedo\Microbilt;
 
-
 use GuzzleHttp\Psr7\Request;
 use function GuzzleHttp\Psr7\stream_for;
 
 class Client
 {
-
     protected $http;
 
     protected $httpClient;
@@ -28,6 +26,23 @@ class Client
 
         $request = $this
             ->createRequest('POST', '/CriminalSearch/GetReport', [
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $token,
+            ])
+            ->withBody(stream_for(json_encode($attributes)));
+
+        $response = $this->httpClient->send($request);
+
+        return json_decode($response->getBody());
+    }
+
+    public function phoneNameVerification(array $attributes)
+    {
+        $token = $this->getAccessToken();
+
+        $request = $this
+            ->createRequest('POST', '/PhoneNameVerification', [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Bearer ' . $token,
