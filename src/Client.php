@@ -54,6 +54,23 @@ class Client
         return json_decode($response->getBody());
     }
 
+    public function phoneNameVerification(array $attributes)
+    {
+        $token = $this->getAccessToken();
+
+        $request = $this
+            ->createRequest('POST', '/PhoneNameVerification', [
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $token,
+            ])
+            ->withBody(stream_for(json_encode($attributes)));
+
+        $response = $this->httpClient->send($request);
+
+        return json_decode($response->getBody());
+    }
+
     public function getAccessToken(): string
     {
         $request = $this->createRequest('POST', '/OAuth/GetAccessToken');
