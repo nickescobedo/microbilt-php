@@ -2,13 +2,11 @@
 
 namespace Nickescobedo\Microbilt;
 
-
 use GuzzleHttp\Psr7\Request;
 use function GuzzleHttp\Psr7\stream_for;
 
 class Client
 {
-
     protected $http;
 
     protected $httpClient;
@@ -24,7 +22,7 @@ class Client
 
     public function criminalSearch(array $attributes)
     {
-        $token = $this->http->getAccessToken();
+        $token = $this->getAccessToken();
 
         $request = $this
             ->createRequest('POST', '/CriminalSearch/GetReport', [
