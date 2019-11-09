@@ -4,9 +4,12 @@ namespace Nickescobedo\Microbilt;
 
 use GuzzleHttp\Psr7\Request;
 use function GuzzleHttp\Psr7\stream_for;
+use Nickescobedo\Microbilt\Resources\PhoneSearch;
 
 class Client
 {
+    use PhoneSearch;
+
     protected $http;
 
     protected $httpClient;
@@ -73,22 +76,28 @@ class Client
 
     public function getAccessToken(): string
     {
-        $request = $this->createRequest('POST', '/OAuth/GetAccessToken');
+        $url = Config::get('productionApiUrl');
 
-        $request->withBody(stream_for(json_encode([
-            'client_id' => Config::get('client_id'),
-            'client_secret' => Config::get('client_secret'),
-            'grant_type' => 'client_credentials',
-        ])));
+        if (Config::get('mode') !== 'prod') {
+            $url = Config::get('sandboxApiUrl');
+        }
 
-        $response = $this->httpClient->send($request);
+        $url = $url . '/OAuth/GetAccessToken';
+
+        $response = $this->httpClient->post($url, [
+            'json' => [
+                'client_id' => Config::get('client_id'),
+                'client_secret' => Config::get('client_secret'),
+                'grant_type' => 'client_credentials',
+            ]
+        ]);
 
         $parsedResponse = json_decode($response->getBody());
 
         return $parsedResponse->access_token;
     }
 
-    private function createRequest(string $verb, string $uri, array $headers = [])
+    public function makeRequest(string $verb, string $uri, array $parameters = [])
     {
         $url = Config::get('productionApiUrl');
 
@@ -96,10 +105,24 @@ class Client
             $url = Config::get('sandboxApiUrl');
         }
 
-        $url = $url . $uri;
+        $url = $url . '/' . $uri;
 
-        $request = new Request($verb, $url, $headers);
+        $config['headers'] = [
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer ' . $this->getAccessToken(),
+        ];
 
-        return $request;
+        if (!empty($parameters)) {
+            if (strtolower($verb) == 'get') {
+                $config['query'] = $parameters;
+            } else {
+                $config['json'] = $parameters;
+            }
+        }
+
+        $response = $this->httpClient->$verb($url, $config);
+
+        return json_decode($response->getBody());
     }
 }
