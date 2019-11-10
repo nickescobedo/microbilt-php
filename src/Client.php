@@ -124,8 +124,6 @@ class Client
             }
         }
 
-        var_dump($config);
-
         $response = $this->httpClient->$verb($url, $config);
 
         return json_decode($response->getBody());
