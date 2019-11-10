@@ -6,6 +6,7 @@ use function GuzzleHttp\Psr7\stream_for;
 use Nickescobedo\Microbilt\Resources\BankAccountSearch;
 use Nickescobedo\Microbilt\Resources\DiversLicenseSearch;
 use Nickescobedo\Microbilt\Resources\EmailSearch;
+use Nickescobedo\Microbilt\Resources\EmploymentSearch;
 use Nickescobedo\Microbilt\Resources\EnhancedPeopleSearch;
 use Nickescobedo\Microbilt\Resources\PhoneSearch;
 use Nickescobedo\Microbilt\Resources\ReversePhoneSearch;
@@ -20,6 +21,7 @@ class Client
     use TraceDetail;
     use DiversLicenseSearch;
     use BankAccountSearch;
+    use EmploymentSearch;
 
     protected $http;
 
