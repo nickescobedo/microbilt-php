@@ -1,6 +1,6 @@
 <?php
 
-namespace Nickescobedo\Microbilt\Resources;
+namespace NickEscobedo\MicroBilt\Resources;
 
 
 trait BankruptcySearch

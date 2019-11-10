@@ -11,7 +11,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Nickescobedo\\Microbilt\\": "src/"
+            "NickEscobedo\\MicroBilt\\": "src/"
         }
     },
     "license": "MIT",

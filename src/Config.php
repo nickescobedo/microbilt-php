@@ -1,6 +1,6 @@
 <?php
 
-namespace Nickescobedo\Microbilt;
+namespace NickEscobedo\MicroBilt;
 
 
 class Config
