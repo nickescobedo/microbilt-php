@@ -4,6 +4,7 @@ namespace Nickescobedo\Microbilt;
 
 use function GuzzleHttp\Psr7\stream_for;
 use Nickescobedo\Microbilt\Resources\EmailSearch;
+use Nickescobedo\Microbilt\Resources\EnhancedPeopleSearch;
 use Nickescobedo\Microbilt\Resources\PhoneSearch;
 use Nickescobedo\Microbilt\Resources\ReversePhoneSearch;
 
@@ -12,6 +13,7 @@ class Client
     use PhoneSearch;
     use ReversePhoneSearch;
     use EmailSearch;
+    use EnhancedPeopleSearch;
 
     protected $http;
 
@@ -20,8 +22,6 @@ class Client
     public function __construct(array $options = [])
     {
         Config::setOptions($options);
-
-        $this->http = new Http();
 
         $this->httpClient = new \GuzzleHttp\Client();
     }
@@ -123,6 +123,8 @@ class Client
                 $config['json'] = $parameters;
             }
         }
+
+        var_dump($config);
 
         $response = $this->httpClient->$verb($url, $config);
 
