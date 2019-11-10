@@ -9,6 +9,7 @@ use Nickescobedo\Microbilt\Resources\DiversLicenseSearch;
 use Nickescobedo\Microbilt\Resources\EmailSearch;
 use Nickescobedo\Microbilt\Resources\EmploymentSearch;
 use Nickescobedo\Microbilt\Resources\EnhancedPeopleSearch;
+use Nickescobedo\Microbilt\Resources\EvictionsSearch;
 use Nickescobedo\Microbilt\Resources\PhoneSearch;
 use Nickescobedo\Microbilt\Resources\ReversePhoneSearch;
 use Nickescobedo\Microbilt\Resources\TraceDetail;
@@ -26,6 +27,7 @@ class Client
     use EmploymentSearch;
     use VehicleSearch;
     use BankruptcySearch;
+    use EvictionsSearch;
 
     protected $http;
 
