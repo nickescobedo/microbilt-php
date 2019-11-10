@@ -5,6 +5,7 @@ namespace Nickescobedo\Microbilt;
 use function GuzzleHttp\Psr7\stream_for;
 use Nickescobedo\Microbilt\Resources\BankAccountSearch;
 use Nickescobedo\Microbilt\Resources\BankruptcySearch;
+use Nickescobedo\Microbilt\Resources\CriminalSearch;
 use Nickescobedo\Microbilt\Resources\DiversLicenseSearch;
 use Nickescobedo\Microbilt\Resources\EmailSearch;
 use Nickescobedo\Microbilt\Resources\EmploymentSearch;
@@ -28,6 +29,7 @@ class Client
     use VehicleSearch;
     use BankruptcySearch;
     use EvictionsSearch;
+    use CriminalSearch;
 
     protected $http;
 
@@ -46,23 +48,6 @@ class Client
 
         $request = $this
             ->createRequest('POST', '/AddressNameVerification', [
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $token,
-            ])
-            ->withBody(stream_for(json_encode($attributes)));
-
-        $response = $this->httpClient->send($request);
-
-        return json_decode($response->getBody());
-    }
-
-    public function criminalSearch(array $attributes)
-    {
-        $token = $this->getAccessToken();
-
-        $request = $this
-            ->createRequest('POST', '/CriminalSearch/GetReport', [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Bearer ' . $token,
