@@ -2,13 +2,16 @@
 
 namespace Nickescobedo\Microbilt;
 
-use GuzzleHttp\Psr7\Request;
 use function GuzzleHttp\Psr7\stream_for;
+use Nickescobedo\Microbilt\Resources\EmailSearch;
 use Nickescobedo\Microbilt\Resources\PhoneSearch;
+use Nickescobedo\Microbilt\Resources\ReversePhoneSearch;
 
 class Client
 {
     use PhoneSearch;
+    use ReversePhoneSearch;
+    use EmailSearch;
 
     protected $http;
 
