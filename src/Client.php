@@ -3,18 +3,45 @@
 namespace Nickescobedo\Microbilt;
 
 use function GuzzleHttp\Psr7\stream_for;
+use Nickescobedo\Microbilt\Resources\ABAAcctVerification;
+use Nickescobedo\Microbilt\Resources\ACHCheckPrescreen;
+use Nickescobedo\Microbilt\Resources\ACHCheckPrescreenExtended;
+use Nickescobedo\Microbilt\Resources\AddressNameVerification;
+use Nickescobedo\Microbilt\Resources\AddressStandardization;
 use Nickescobedo\Microbilt\Resources\BankAccountSearch;
+use Nickescobedo\Microbilt\Resources\BankAccountVerifyAdvantage;
 use Nickescobedo\Microbilt\Resources\BankruptcySearch;
 use Nickescobedo\Microbilt\Resources\CriminalSearch;
+use Nickescobedo\Microbilt\Resources\DeathMasterFileValidation;
 use Nickescobedo\Microbilt\Resources\DiversLicenseSearch;
+use Nickescobedo\Microbilt\Resources\DriversLicenseFormatValidation;
 use Nickescobedo\Microbilt\Resources\EmailSearch;
+use Nickescobedo\Microbilt\Resources\EmailValidation;
 use Nickescobedo\Microbilt\Resources\EmploymentSearch;
 use Nickescobedo\Microbilt\Resources\EnhancedPeopleSearch;
+use Nickescobedo\Microbilt\Resources\Equifax;
+use Nickescobedo\Microbilt\Resources\EquifaxCanada;
 use Nickescobedo\Microbilt\Resources\EvictionsSearch;
+use Nickescobedo\Microbilt\Resources\Experian;
+use Nickescobedo\Microbilt\Resources\IBV;
+use Nickescobedo\Microbilt\Resources\IDVerify;
+use Nickescobedo\Microbilt\Resources\IpAddressInfo;
+use Nickescobedo\Microbilt\Resources\IPredict;
+use Nickescobedo\Microbilt\Resources\MLAVerify;
+use Nickescobedo\Microbilt\Resources\NadaVehicle;
+use Nickescobedo\Microbilt\Resources\OFACWatchListSearch;
+use Nickescobedo\Microbilt\Resources\PhoneAddressVerification;
+use Nickescobedo\Microbilt\Resources\PhoneNameVerification;
 use Nickescobedo\Microbilt\Resources\PhoneSearch;
+use Nickescobedo\Microbilt\Resources\Prbccl;
 use Nickescobedo\Microbilt\Resources\ProfessionalLicenseSearch;
 use Nickescobedo\Microbilt\Resources\ReversePhoneSearch;
+use Nickescobedo\Microbilt\Resources\SSNAddressVerification;
+use Nickescobedo\Microbilt\Resources\SSNNameVerification;
+use Nickescobedo\Microbilt\Resources\SSNPhoneVerification;
+use Nickescobedo\Microbilt\Resources\SSNValidation;
 use Nickescobedo\Microbilt\Resources\TraceDetail;
+use Nickescobedo\Microbilt\Resources\TransUnion;
 use Nickescobedo\Microbilt\Resources\UCCSearch;
 use Nickescobedo\Microbilt\Resources\VehicleSearch;
 
@@ -34,6 +61,33 @@ class Client
     use CriminalSearch;
     use ProfessionalLicenseSearch;
     use UCCSearch;
+    use ABAAcctVerification;
+    use AddressStandardization;
+    use AddressNameVerification;
+    use DeathMasterFileValidation;
+    use DriversLicenseFormatValidation;
+    use EmailValidation;
+    use IpAddressInfo;
+    use NadaVehicle;
+    use PhoneAddressVerification;
+    use PhoneNameVerification;
+    use SSNAddressVerification;
+    use SSNNameVerification;
+    use SSNPhoneVerification;
+    use SSNValidation;
+    use OFACWatchListSearch;
+    use ACHCheckPrescreen;
+    use BankAccountVerifyAdvantage;
+    use Equifax;
+    use EquifaxCanada;
+    use Experian;
+    use ACHCheckPrescreenExtended;
+    use IBV;
+    use IDVerify;
+    use IPredict;
+    use MLAVerify;
+    use Prbccl;
+    use TransUnion;
 
     protected $http;
 
@@ -44,40 +98,6 @@ class Client
         Config::setOptions($options);
 
         $this->httpClient = new \GuzzleHttp\Client();
-    }
-
-    public function addressNameVerification(array $attributes)
-    {
-        $token = $this->getAccessToken();
-
-        $request = $this
-            ->createRequest('POST', '/AddressNameVerification', [
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $token,
-            ])
-            ->withBody(stream_for(json_encode($attributes)));
-
-        $response = $this->httpClient->send($request);
-
-        return json_decode($response->getBody());
-    }
-
-    public function phoneNameVerification(array $attributes)
-    {
-        $token = $this->getAccessToken();
-
-        $request = $this
-            ->createRequest('POST', '/PhoneNameVerification', [
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $token,
-            ])
-            ->withBody(stream_for(json_encode($attributes)));
-
-        $response = $this->httpClient->send($request);
-
-        return json_decode($response->getBody());
     }
 
     public function getAccessToken(): string

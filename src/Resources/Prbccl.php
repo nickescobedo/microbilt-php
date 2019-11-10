@@ -2,9 +2,7 @@
 
 namespace Nickescobedo\Microbilt\Resources;
 
-use Nickescobedo\Microbilt\Client;
-
-class Prbccl extends Client
+trait Prbccl
 {
     public function getReport(array $parameters)
     {
