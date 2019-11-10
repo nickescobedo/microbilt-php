@@ -4,6 +4,7 @@ namespace Nickescobedo\Microbilt;
 
 use function GuzzleHttp\Psr7\stream_for;
 use Nickescobedo\Microbilt\Resources\BankAccountSearch;
+use Nickescobedo\Microbilt\Resources\BankruptcySearch;
 use Nickescobedo\Microbilt\Resources\DiversLicenseSearch;
 use Nickescobedo\Microbilt\Resources\EmailSearch;
 use Nickescobedo\Microbilt\Resources\EmploymentSearch;
@@ -24,6 +25,7 @@ class Client
     use BankAccountSearch;
     use EmploymentSearch;
     use VehicleSearch;
+    use BankruptcySearch;
 
     protected $http;
 
