@@ -3,6 +3,7 @@
 namespace Nickescobedo\Microbilt;
 
 use function GuzzleHttp\Psr7\stream_for;
+use Nickescobedo\Microbilt\Resources\BankAccountSearch;
 use Nickescobedo\Microbilt\Resources\DiversLicenseSearch;
 use Nickescobedo\Microbilt\Resources\EmailSearch;
 use Nickescobedo\Microbilt\Resources\EnhancedPeopleSearch;
@@ -18,6 +19,7 @@ class Client
     use EnhancedPeopleSearch;
     use TraceDetail;
     use DiversLicenseSearch;
+    use BankAccountSearch;
 
     protected $http;
 
