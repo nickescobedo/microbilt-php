@@ -7,6 +7,7 @@ use Nickescobedo\Microbilt\Resources\EmailSearch;
 use Nickescobedo\Microbilt\Resources\EnhancedPeopleSearch;
 use Nickescobedo\Microbilt\Resources\PhoneSearch;
 use Nickescobedo\Microbilt\Resources\ReversePhoneSearch;
+use Nickescobedo\Microbilt\Resources\TraceDetail;
 
 class Client
 {
@@ -14,6 +15,7 @@ class Client
     use ReversePhoneSearch;
     use EmailSearch;
     use EnhancedPeopleSearch;
+    use TraceDetail;
 
     protected $http;
 
