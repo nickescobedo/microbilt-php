@@ -15,6 +15,7 @@ use Nickescobedo\Microbilt\Resources\PhoneSearch;
 use Nickescobedo\Microbilt\Resources\ProfessionalLicenseSearch;
 use Nickescobedo\Microbilt\Resources\ReversePhoneSearch;
 use Nickescobedo\Microbilt\Resources\TraceDetail;
+use Nickescobedo\Microbilt\Resources\UCCSearch;
 use Nickescobedo\Microbilt\Resources\VehicleSearch;
 
 class Client
@@ -32,6 +33,7 @@ class Client
     use EvictionsSearch;
     use CriminalSearch;
     use ProfessionalLicenseSearch;
+    use UCCSearch;
 
     protected $http;
 
