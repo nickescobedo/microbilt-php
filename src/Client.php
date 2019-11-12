@@ -104,36 +104,7 @@ class Client
         $this->httpClient = $client;
     }
 
-    public function getAccessToken(): string
-    {
-        if ($this->accessToken !== null) {
-            return $this->accessToken;
-        }
-
-        $url = Config::get('productionApiUrl');
-
-        if (Config::get('mode') !== 'prod') {
-            $url = Config::get('sandboxApiUrl');
-        }
-
-        $url = $url . '/OAuth/GetAccessToken';
-
-        $response = $this->httpClient->post($url, [
-            'json' => [
-                'client_id' => Config::get('client_id'),
-                'client_secret' => Config::get('client_secret'),
-                'grant_type' => 'client_credentials',
-            ]
-        ]);
-
-        $parsedResponse = json_decode($response->getBody());
-
-        $this->accessToken = $parsedResponse->access_token;
-
-        return $this->accessToken;
-    }
-
-    public function makeRequest(string $verb, string $uri, array $parameters = [])
+    protected function makeRequest(string $verb, string $uri, array $parameters = [])
     {
         $url = Config::get('productionApiUrl');
 
@@ -160,5 +131,34 @@ class Client
         $response = $this->httpClient->$verb($url, $config);
 
         return json_decode($response->getBody());
+    }
+
+    private function getAccessToken(): string
+    {
+        if ($this->accessToken !== null) {
+            return $this->accessToken;
+        }
+
+        $url = Config::get('productionApiUrl');
+
+        if (Config::get('mode') !== 'prod') {
+            $url = Config::get('sandboxApiUrl');
+        }
+
+        $url = $url . '/OAuth/GetAccessToken';
+
+        $response = $this->httpClient->post($url, [
+            'json' => [
+                'client_id' => Config::get('client_id'),
+                'client_secret' => Config::get('client_secret'),
+                'grant_type' => 'client_credentials',
+            ]
+        ]);
+
+        $parsedResponse = json_decode($response->getBody());
+
+        $this->accessToken = $parsedResponse->access_token;
+
+        return $this->accessToken;
     }
 }
