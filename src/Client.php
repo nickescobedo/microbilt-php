@@ -2,7 +2,6 @@
 
 namespace NickEscobedo\MicroBilt;
 
-use function GuzzleHttp\Psr7\stream_for;
 use NickEscobedo\MicroBilt\Resources\ABAAcctVerification;
 use NickEscobedo\MicroBilt\Resources\ACHCheckPrescreen;
 use NickEscobedo\MicroBilt\Resources\ACHCheckPrescreenExtended;
@@ -88,8 +87,6 @@ class Client
     use MLAVerify;
     use Prbccl;
     use TransUnion;
-
-    protected $http;
 
     protected $httpClient;
 
