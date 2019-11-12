@@ -90,6 +90,8 @@ class Client
 
     protected $httpClient;
 
+    protected $accessToken;
+
     public function __construct(array $options = [])
     {
         Config::setOptions($options);
@@ -97,8 +99,17 @@ class Client
         $this->httpClient = new \GuzzleHttp\Client();
     }
 
+    public function setClient(\GuzzleHttp\Client $client)
+    {
+        $this->httpClient = $client;
+    }
+
     public function getAccessToken(): string
     {
+        if ($this->accessToken !== null) {
+            return $this->accessToken;
+        }
+
         $url = Config::get('productionApiUrl');
 
         if (Config::get('mode') !== 'prod') {
@@ -117,7 +128,9 @@ class Client
 
         $parsedResponse = json_decode($response->getBody());
 
-        return $parsedResponse->access_token;
+        $this->accessToken = $parsedResponse->access_token;
+
+        return $this->accessToken;
     }
 
     public function makeRequest(string $verb, string $uri, array $parameters = [])
