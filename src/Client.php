@@ -32,6 +32,7 @@ use NickEscobedo\MicroBilt\Resources\OFACWatchListSearch;
 use NickEscobedo\MicroBilt\Resources\PhoneAddressVerification;
 use NickEscobedo\MicroBilt\Resources\PhoneNameVerification;
 use NickEscobedo\MicroBilt\Resources\PhoneSearch;
+use NickEscobedo\MicroBilt\Resources\Prbc;
 use NickEscobedo\MicroBilt\Resources\Prbccl;
 use NickEscobedo\MicroBilt\Resources\ProfessionalLicenseSearch;
 use NickEscobedo\MicroBilt\Resources\ReversePhoneSearch;
@@ -86,6 +87,7 @@ class Client
     use IPredict;
     use MLAVerify;
     use Prbccl;
+    use Prbc;
     use TransUnion;
 
     protected $httpClient;
