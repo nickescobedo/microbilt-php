@@ -4,7 +4,7 @@ namespace NickEscobedo\MicroBilt\Resources;
 
 trait NadaVehicle
 {
-    public function nadaGetMake(string $year)
+    public function nadaGetMakes(int $year)
     {
         return $this->makeRequest('GET', 'NADAVehiclePricing/GetMake', [
             'year' => $year,
@@ -16,7 +16,7 @@ trait NadaVehicle
         return $this->makeRequest('GET', 'NADAVehiclePricing/GetStates');
     }
 
-    public function nadaGetSeries(string $year, string $make)
+    public function nadaGetSeries(int $year, int $make)
     {
         return $this->makeRequest('GET', 'NADAVehiclePricing/GetSeries', [
             'year' => $year,
@@ -34,7 +34,7 @@ trait NadaVehicle
         return $this->makeRequest('GET', 'NADAVehiclePricing/GetYears');
     }
 
-    public function nadaGetBody(string $year, string $make, string $series)
+    public function nadaGetBody(int $year, int $make, int $series)
     {
         return $this->makeRequest('GET', 'NADAVehiclePricing/GetBody', [
             'year' => $year,

@@ -4,8 +4,11 @@ namespace NickEscobedo\MicroBilt\Resources;
 
 trait SSNPhoneVerification
 {
-    public function ssnPhoneVerification(array $parameters)
+    public function ssnPhoneVerification(string $ssn, string $phoneNumber)
     {
-        return $this->makeRequest('POST', 'SSNPhoneVerification', $parameters);
+        return $this->makeRequest('POST', 'SSNPhoneVerification', [
+            'SSN' => $ssn,
+            'PhoneNumber' => $phoneNumber,
+        ]);
     }
 }

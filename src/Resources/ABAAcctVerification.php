@@ -5,8 +5,11 @@ namespace NickEscobedo\MicroBilt\Resources;
 
 trait ABAAcctVerification
 {
-    public function aBAAcctVerification(array $parameters)
+    public function aBAAcctVerification(string $routingNumber, string $accountNumber)
     {
-        return $this->makeRequest('POST', 'ABAAcctVerification', $parameters);
+        return $this->makeRequest('POST', 'ABAAcctVerification', [
+            'BankRoutingNumber' => $routingNumber,
+            'BankAccountNumber' => $accountNumber,
+        ]);
     }
 }

@@ -4,8 +4,10 @@ namespace NickEscobedo\MicroBilt\Resources;
 
 trait IpAddressInfo
 {
-    public function ipAddressInfo(array $parameters)
+    public function ipAddressInfo(string $ip)
     {
-        return $this->makeRequest('POST', 'IPAddressInfo', $parameters);
+        return $this->makeRequest('POST', 'IPAddressInfo', [
+            'IP' => $ip
+        ]);
     }
 }

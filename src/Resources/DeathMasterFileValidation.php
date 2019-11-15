@@ -5,8 +5,11 @@ namespace NickEscobedo\MicroBilt\Resources;
 
 trait DeathMasterFileValidation
 {
-    public function deathMasterFileValidation(array $parameters)
+    public function deathMasterFileValidation(string $ssn, string $dateOfBirth)
     {
-        return $this->makeRequest('POST', 'DeathMasterFileValidation', $parameters);
+        return $this->makeRequest('POST', 'DeathMasterFileValidation', [
+            'SSN' => $ssn,
+            'DoB' => $dateOfBirth,
+        ]);
     }
 }

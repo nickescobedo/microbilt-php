@@ -4,9 +4,11 @@ namespace NickEscobedo\MicroBilt\Resources;
 
 trait EmailValidation
 {
-    public function emailValidation(array $parameters)
+    public function emailValidation(string $email)
     {
-        return $this->makeRequest('POST', 'EmailValidation/GetReport', $parameters);
+        return $this->makeRequest('POST', 'EmailValidation/GetReport', [
+            'EmailAddr' => $email,
+        ]);
     }
 
     public function emailValidationArchive(array $parameters)
