@@ -1,5 +1,5 @@
 # Microbilt PHP
-![](https://github.com/nickescobedo/microbilt-php/workflows/Tests/badge.svg)
+![](https://travis-ci.org/nickescobedo/microbilt-php.svg?branch=master)
 
 A PHP client for consuming the Microbilt web services API.
 
