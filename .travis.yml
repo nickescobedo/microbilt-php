@@ -17,3 +17,7 @@ install:
   
 script:
   - composer test
+
+cache:
+  directories:
+    - $HOME/vendor
