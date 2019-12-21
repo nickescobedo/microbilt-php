@@ -1,5 +1,5 @@
 # Microbilt PHP
-![](https://travis-ci.org/nickescobedo/microbilt-php.svg?branch=master)
+![](https://travis-ci.org/nickescobedo/microbilt-php.svg?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/nickescobedo/microbilt-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/nickescobedo/microbilt-php/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nickescobedo/microbilt-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nickescobedo/microbilt-php/?branch=master)
 
 A PHP client for consuming the Microbilt web services API.
 
