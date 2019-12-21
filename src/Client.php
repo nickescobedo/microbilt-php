@@ -116,6 +116,7 @@ class Client
 
         $url = $url . '/' . $uri;
 
+        $config = [];
         $config['headers'] = [
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
