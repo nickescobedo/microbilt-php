@@ -1,4 +1,5 @@
 # Microbilt PHP
+![](https://travis-ci.org/nickescobedo/microbilt-php.svg?branch=master)
 
 A PHP client for consuming the Microbilt web services API.
 
