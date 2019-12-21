@@ -38,7 +38,7 @@ $client = new \NickEscobedo\MicroBilt\Client([
 ]);
 
 // Data structure taken from https://developer.microbilt.com/transunion/apis/post/GetReport
-$client->transUnion([
+$response = $client->transUnion([
     "PersonInfo"=> [
         "PersonName"=> [
             "FirstName"=> '',
