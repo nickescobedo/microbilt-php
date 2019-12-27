@@ -6,13 +6,16 @@ namespace NickEscobedo\MicroBilt;
 class Config
 {
 
+    const PRODUCTION_URL = 'https://api.microbilt.com';
+
+    const SANDBOX_URL = 'https://apitest.microbilt.com';
+
     protected static $defaultOptions = [
-        'productionApiUrl' => 'https://api.microbilt.com',
-        'sandboxApiUrl' => 'https://apitest.microbilt.com',
+        'productionApiUrl' => self::PRODUCTION_URL,
+        'sandboxApiUrl' => self::SANDBOX_URL,
 
         'mode' => 'prod',
     ];
-
 
     protected static $settings = [];
 
@@ -26,6 +29,15 @@ class Config
     public static function get(string $key)
     {
         return static::$settings[$key];
+    }
+
+    public static function getUrl(): string
+    {
+        if (self::get('mode') === 'prod') {
+            return self::PRODUCTION_URL;
+        }
+
+        return self::SANDBOX_URL;
     }
 
 }

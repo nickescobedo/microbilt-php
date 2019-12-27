@@ -108,13 +108,7 @@ class Client
 
     protected function makeRequest(string $verb, string $uri, array $parameters = [])
     {
-        $url = Config::get('productionApiUrl');
-
-        if (Config::get('mode') !== 'prod') {
-            $url = Config::get('sandboxApiUrl');
-        }
-
-        $url = $url . '/' . $uri;
+        $url = Config::getUrl() . '/' . $uri;
 
         $config = [];
         $config['headers'] = [
@@ -142,13 +136,7 @@ class Client
             return $this->accessToken;
         }
 
-        $url = Config::get('productionApiUrl');
-
-        if (Config::get('mode') !== 'prod') {
-            $url = Config::get('sandboxApiUrl');
-        }
-
-        $url = $url . '/OAuth/GetAccessToken';
+        $url = Config::getUrl() . '/OAuth/GetAccessToken';
 
         $response = $this->httpClient->post($url, [
             'json' => [
